@@ -3,6 +3,7 @@
 //#include <QDir>
 #include "quazipfile.h"
 #include "idevice.h"
+#include "qdprpixmap.h"
 
 CProjectPage::CProjectPage(QString path, bool quickStart, QString bgImagePath, QString extension, QWidget *parent) :
     QWidget(parent),
@@ -15,7 +16,8 @@ CProjectPage::CProjectPage(QString path, bool quickStart, QString bgImagePath, Q
     m_Ext = extension;
     m_QuickStart = quickStart;
     m_Path = path;
-    if (!bgImagePath.isEmpty()) setStyleSheet("QListWidget{background:url("+bgImagePath+");}");
+    //if (!bgImagePath.isEmpty()) setStyleSheet("QListWidget{background:url("+bgImagePath+");}");
+    QDPRPixmap::setWidgetBackground(this,bgImagePath,QPalette::Base);
     ui->listWidget->setMouseTracking(true);
     ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->listWidget,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(itemDoubleClicked(QListWidgetItem*)));
