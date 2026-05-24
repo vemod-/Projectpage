@@ -140,18 +140,16 @@ void CProjectPage::duplicate()
 
 QPixmap CProjectPage::createSquare(QPixmap p)
 {
-    QRect r = p.rect();
+    QSize r = p.size();
     if (r.width() > r.height())
     {
-        r.setLeft((r.width()-r.height())/2);
         r.setWidth(r.height());
     }
     else if (r.height() > r.width())
     {
-        r.setTop((r.height()-r.width())/2);
         r.setHeight(r.width());
     }
-    return p.copy(r);
+    return p.copy(0,0,r.width(),r.height());
 }
 
 void CProjectPage::fillView()
